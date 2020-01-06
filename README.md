@@ -1,10 +1,8 @@
 DESTINY 2 Activity Finder
 
-foto usuario
-foto da atidade
-paginacao
-                                                                                
-                                                                                
+Projeto feito para jogadores de Destiny 2 combinarem atividades online em qualquer plataforma
+
+Feito em cima do modelo do djavue2 (github.com/evolutio/djavue2) 
 
 # 1. Dev-env, super-easy mode (docker all things)
 
