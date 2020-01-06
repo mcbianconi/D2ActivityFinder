@@ -1,4 +1,8 @@
 DESTINY 2 Activity Finder
+
+foto usuario
+foto da atidade
+paginacao
                                                                                 
                                                                                 
 

@@ -32,7 +32,6 @@
                 label="Start Date"
                 append-icon="mdi-calendar"
                 readonly
-                outlined
                 v-on="on"
               />
             </template>

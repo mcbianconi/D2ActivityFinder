@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     name = models.CharField(max_length=35)
     gamer_tag = models.CharField(max_length=35)
+    avatar = models.CharField(max_length=100, default="/avatar_placeholder.png")
 
     def to_dict_json(self):
         d = {
@@ -11,7 +12,8 @@ class User(AbstractUser):
             'name': self.username,
             'username': self.username,
             'email': self.email,
-            'gamer_tag': self.gamer_tag
+            'gamer_tag': self.gamer_tag,
+            'avatar': self.avatar
         }
         return d
 
@@ -51,6 +53,7 @@ class Activity(models.Model):
     max_players = models.PositiveSmallIntegerField()
     date = models.DateField()
     members = models.ManyToManyField(User, related_name="activities")
+    image = models.CharField(max_length=100, default="/activity_placeholder.jpg")
 
     def to_dict_json(self):
         d = {
@@ -60,6 +63,7 @@ class Activity(models.Model):
             'description': self.description,
             'max_players': self.max_players,
             'date': str(self.date),
+            'image': self.image
         }
         d["members"] = []
         if self.members.exists():

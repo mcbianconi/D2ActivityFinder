@@ -1,9 +1,7 @@
 <template>
   <v-app-bar color="red" fixed app clipped-right>
     <v-app-bar-nav-icon @click.stop="state.drawer = !state.drawer" />
-    <v-toolbar-title>
-      Destiny 2 Activity Finder
-    </v-toolbar-title>
+    <v-toolbar-title>Destiny 2 Activity Finder</v-toolbar-title>
     <v-spacer />
     <v-btn
       v-if="!logged_user"
@@ -20,14 +18,26 @@
     <v-menu v-if="logged_user" offset-y>
       <template v-slot:activator="{ on }">
         <v-btn icon v-on="on">
-          <v-skeleton-loader size="36px" boilerplate type="avatar" />
+          <v-img
+            color="transparent"
+            height="45"
+            width="45"
+            lazy-src="/avatar_placeholder.png"
+            :src="logged_user.avatar"
+          />
         </v-btn>
       </template>
       <v-card>
         <v-list two-line>
           <v-list-item>
             <v-list-item-avatar>
-              <v-skeleton-loader type="image" />
+              <v-img
+                color="transparent"
+                height="45"
+                width="45"
+                lazy-src="/avatar_placeholder.png"
+                :src="logged_user.avatar"
+              />
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title>{{logged_user.username}}</v-list-item-title>

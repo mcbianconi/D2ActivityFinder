@@ -40,7 +40,7 @@
     </v-card-text>
     <v-card-actions>
       <v-btn color="red" @click="save()">Save</v-btn>
-      <v-btn text @click="step = 1">Cancel</v-btn>
+      <v-btn text nuxt to="/">Cancel</v-btn>
     </v-card-actions>
   </v-card>
 </template>

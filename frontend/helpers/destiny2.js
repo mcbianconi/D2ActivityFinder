@@ -18,6 +18,22 @@ const api = {
     { text: 'PC', value: 3 }
   ],
 
+  avatars: [
+    { name: 'Default', path: '/avatar_placeholder.png' },
+    { name: 'Ghost', path: '/avatars/ghost.png' },
+    { name: 'Hunter', path: '/avatars/hunter.png' },
+    { name: 'Titan', path: '/avatars/titan.png' },
+    { name: 'Warlock', path: '/avatars/warlock.png' }
+  ],
+
+  activity_images: [
+    { state: 'Florida', abbr: 'FL' },
+    { state: 'Georgia', abbr: 'GA' },
+    { state: 'Nebraska', abbr: 'NE' },
+    { state: 'California', abbr: 'CA' },
+    { state: 'New York', abbr: 'NY' }
+  ],
+
   search_activities (term) {
     const ENDPOINT = '/Armory/Search/DestinyActivityDefinition/' + term
     return get(BUNGIE_API_URL + ENDPOINT, {})

@@ -1,6 +1,6 @@
 <template>
   <v-list dense>
-    <v-subheader class="mt-4 grey--text text--darken-1">Online Guardians (to be implemented)</v-subheader>
+    <v-subheader class="mt-4 grey--text text--darken-1">Online Guardians (not implemented)</v-subheader>
     <v-list>
       <v-list-item v-for="item in items2" :key="item.text" link>
         <v-list-item-avatar>

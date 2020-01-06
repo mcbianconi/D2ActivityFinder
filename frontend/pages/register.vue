@@ -19,6 +19,27 @@
               outlined
             />
           </v-col>
+          <v-col cols="3">
+            <v-select
+              v-model="avatar"
+              :items="avatar_list"
+              item-text="name"
+              item-value="path"
+              label="Avatar"
+              outlined
+              persistent-hint
+              single-line
+            />
+          </v-col>
+          <v-col cols="1">
+            <v-img
+              color="transparent"
+              height="80"
+              width="80"
+              lazy-src="/avatar_placeholder.png"
+              :src="avatar"
+            />
+          </v-col>
         </v-row>
         <v-row>
           <v-col cols="4">
@@ -58,6 +79,7 @@
 <script>
 import AppApi from '~api'
 import Snacks from '~/helpers/Snacks.js'
+import Destiny2 from '~/helpers/destiny2.js'
 
 export default {
   data: () => ({
@@ -67,6 +89,7 @@ export default {
     password: '',
     avatar: '',
 
+    avatar_list: Destiny2.avatars,
     valid: false,
     showPass: false,
     showConfPass: false,
@@ -94,12 +117,13 @@ export default {
         user.gamer_tag = this.gamer_tag
         user.email = this.email
         user.password = this.password
+        user.avatar = this.avatar
 
         AppApi.register(user).then(response => {
           const result = JSON.parse(response.data)
           if (!result.error) {
             Snacks.show(this.$store, {
-              text: 'Usuario Registrado',
+              text: 'Registered, please Log In',
               visible: true,
               color: 'success'
             })
@@ -108,7 +132,7 @@ export default {
         })
       } else {
         Snacks.show(this.$store, {
-          text: 'Erro',
+          text: 'Error',
           visible: true,
           color: 'red'
         })

@@ -9,5 +9,6 @@ def register(user):
     u.username = user['name']
     u.name = user['name']
     u.set_password(user['password'])
+    u.avatar = user['avatar']
     u.save()
     return u
