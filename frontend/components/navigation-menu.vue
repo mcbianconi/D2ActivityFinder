@@ -18,7 +18,7 @@
       <v-list-item-action>
         <v-icon>mdi-timetable</v-icon>
       </v-list-item-action>
-      <v-list-item-title>Scheduled</v-list-item-title>
+      <v-list-item-title>Agenda [not implemented]</v-list-item-title>
     </v-list-item>
   </v-list>
 </template>
