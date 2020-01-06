@@ -7,8 +7,8 @@
         <v-list-item-subtitle>{{player.gamer_tag}}</v-list-item-subtitle>
       </v-list-item-content>
 
-      <v-list-item-avatar size="80">
-        <v-img src="/avatar_placeholder.png" />
+      <v-list-item-avatar size="50">
+        <v-img :src="player.avatar" />
       </v-list-item-avatar>
     </v-list-item>
   </v-card>

@@ -22,7 +22,9 @@ def login(request):
     if user is not None and user.is_active:
         auth.login(request, user)
         log_svc.log_login(request.user)
-    return JsonResponse(user.to_dict_json(), safe=False)
+        return JsonResponse(user.to_dict_json(), safe=False)
+    else:
+        raise Exception("Invalid Credentials")
 
 
 def logout(request):

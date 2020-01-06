@@ -1,8 +1,30 @@
 <template>
   <v-card flat>
-    <v-card-title>Create Activity</v-card-title>
+    <v-img
+      height="200"
+      color="transparent"
+      lazy-src="/activity_placeholder.jpg"
+      :src="image_url"
+      gradient="to bottom, rgba(0,0,0,.04), rgba(0,0,0,.9)"
+      class="white--text align-end"
+    >
+      <v-card-title>Create Activity</v-card-title>
+      <v-card-text>
+        <v-autocomplete
+          :items="activity_list"
+          v-model="suggestion"
+          label="Suggestion"
+          :rules="required"
+          required
+          return-object
+          item-text="displayProperties.description"
+          item-value="hash"
+          @change="suggest()"
+        />
+      </v-card-text>
+    </v-img>
     <v-card-text>
-      <v-row>
+      <v-row class="mt-0">
         <v-col cols="8">
           <v-select
             :items="platforms"
@@ -10,6 +32,7 @@
             label="Platform"
             :rules="required"
             required
+            :append-icon="platform_icon"
           />
           <v-text-field label="Activity" class="mt-2" v-model="activity.name" outlined required />
           <v-textarea label="Description" v-model="activity.description" outlined required />
@@ -61,27 +84,24 @@ export default {
       dateMenu: false,
       platforms: Destiny2.platforms,
       required: [v => !!v || 'Must not be null'],
-
+      suggestion: {},
       activity: {
         id: null,
-        platform: 0,
+        platform: -1,
         name: '',
         description: '',
         date: new Date().toISOString().substr(0, 10),
         icon: '/activity_placeholder.jpg',
-        image: '/activity_placeholder.jpg',
+        image: this.image_url,
         max_players: 1
       }
+
     }
   },
 
-  mounted () {
-    window.moment = moment
-  },
-
-  methods: {
-    get_platform_icon (value) {
-      switch (value) {
+  computed: {
+    platform_icon () {
+      switch (this.activity.platform) {
         case 1:
           return 'mdi-playstation'
         case 2:
@@ -93,6 +113,40 @@ export default {
       }
     },
 
+    image_url () {
+      return this.suggestion.pgcrImage != null
+        ? Destiny2.media_url + this.suggestion.pgcrImage : Destiny2.activity_images[0]
+    }
+
+  },
+
+  asyncData (ctx) {
+    return Destiny2.get_activity_list().then(response => {
+      const list = []
+      debugger
+      Object.keys(response.data).forEach(k => {
+        const obj = response.data[k]
+        if (obj.displayProperties && obj.displayProperties.description) {
+          list.push(obj)
+        }
+      })
+
+      return {
+        activity_list: list
+      }
+    })
+  },
+
+  mounted () {
+    window.moment = moment
+  },
+
+  methods: {
+    suggest () {
+      this.activity.description = this.suggestion.displayProperties.description
+      this.activity.name = this.suggestion.displayProperties.name
+      this.activity.image = this.image_url
+    },
     save () {
       AppApi.save_activity(this.activity).then(response => {
         if (response.error) {

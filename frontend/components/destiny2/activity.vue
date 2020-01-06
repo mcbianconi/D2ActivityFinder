@@ -2,7 +2,8 @@
   <v-card class="mx-auto" max-width="450">
     <v-img
       height="150"
-      src="/activity_placeholder.jpg"
+      lazy-src="/activity_placeholder.jpg"
+      :src="activity.image"
       gradient="to bottom, rgba(0,0,0,.01), rgba(0,0,0,.6)"
     >
       <v-row align="end" class="fill-height">

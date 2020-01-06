@@ -10,6 +10,7 @@ def add_activity(activity_dict):
     activity.max_players = int(activity_dict["max_players"])
     activity.date = activity_dict["date"]
     activity.platform = int(activity_dict["platform"])
+    activity.image = activity_dict["image"]
     activity.save()
     return activity
 

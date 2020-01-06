@@ -6,8 +6,8 @@ const api = {
 
   media_url: 'https://bungie.net',
 
-  list_activities () {
-    const manifest = 'http://localhost:3001/DestinyActivityDefinition-7ab91c74-e8a4-40c7-9f70-16a4354125c0.json'
+  get_activity_list () {
+    const manifest = '/DestinyActivityDefinition.json'
     return axios.get(manifest)
   },
 
@@ -27,11 +27,10 @@ const api = {
   ],
 
   activity_images: [
-    { state: 'Florida', abbr: 'FL' },
-    { state: 'Georgia', abbr: 'GA' },
-    { state: 'Nebraska', abbr: 'NE' },
-    { state: 'California', abbr: 'CA' },
-    { state: 'New York', abbr: 'NY' }
+    { name: 'Default', path: '/avatar_placeholder.png' },
+    { name: 'Ghost', path: '/avatars/ghost.png' },
+    { name: 'Hunter', path: '/avatars/hunter.png' },
+    { name: 'Titan', path: '/avatars/titan.png' }
   ],
 
   search_activities (term) {

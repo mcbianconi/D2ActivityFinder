@@ -10,7 +10,7 @@
     </v-list-item>
     <v-img
       :src="activity.image"
-      src="/activity_placeholder.jpg"
+      lazy-src="/activity_placeholder.jpg"
       max-height="200"
       gradient="to bottom, rgba(0,0,0,.01), rgba(0,0,0,.6)"
       class="white--text align-end"
